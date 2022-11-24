@@ -71,6 +71,16 @@ int convert_d(va_list arg)
 
 int convert_i(va_list arg)
 {
-	return (convert_d(arg));
+	int nums;
+	int index;
+	char arr[20] = {0}
+
+	nums = va_arg(arg, int);
+
+	_itoa(nums, arr, 10);
+
+	for (index = 0; arr[index] != '\0'; index++)
+		write(1, &arr[index], 1);
+	return (index);
 }
 
