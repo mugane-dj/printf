@@ -1,0 +1,41 @@
+#include "main.h"
+#include <stdarg.h>
+#include <unistd.h>
+
+/**
+ * convert_c - handles 'c' format specifier
+ *             and prints character to stdout.
+ * @arg: list of char arguments passed.
+ * Return: characters printed.
+ */
+
+int convert_c(va_list arg)
+{
+	char c;
+
+	c = va_arg(arg, int);
+
+	return (write(1, &c, 1));
+}
+
+/**
+ * convert_s - handles format specifier 's'
+ *             and prints string to stdout.
+ * @arg: list of arguments passed.
+ * Return: string chars printed.
+ */
+
+int convert_s(va_list arg)
+{
+	int index;
+	char *str;
+
+	str = va_arg(arg, char *);
+
+	if (str == NULL)
+		str = "(nil)";
+	for (index = 0; str[index]; index++)
+		write(1, &str[index], 1);
+
+	return (index);
+}
