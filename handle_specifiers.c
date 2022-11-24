@@ -39,3 +39,24 @@ int convert_s(va_list arg)
 
 	return (index);
 }
+
+int convert_d(va_list arg)
+{
+	int num;
+	int index;
+	char tmp[20] = {0};
+
+	num = va_arg(arg, int);
+
+	_itoa(num, tmp, 10);
+
+	for(index = 0; tmp[index]; index++)
+		write(1, &tmp[index], 1);
+	return (index);
+}
+
+int convert_i(va_list arg)
+{
+	return(convert_d(arg));
+}
+
