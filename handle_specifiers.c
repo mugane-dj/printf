@@ -34,7 +34,7 @@ int convert_s(va_list arg)
 
 	if (str == NULL)
 		str = "(nil)";
-	for (index = 0; str[index]; index++)
+	for (index = 0; str[index] != '\0'; index++)
 		write(1, &str[index], 1);
 
 	return (index);
@@ -57,7 +57,7 @@ int convert_d(va_list arg)
 
 	_itoa(num, tmp, 10);
 
-	for (index = 0; tmp[index]; index++)
+	for (index = 0; tmp[index] != '\0'; index++)
 		write(1, &tmp[index], 1);
 	return (index);
 }
