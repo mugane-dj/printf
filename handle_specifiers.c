@@ -40,6 +40,13 @@ int convert_s(va_list arg)
 	return (index);
 }
 
+/**
+  * convert_d - handles format specifier 'd'
+  *		and prints string to stdout.
+  * @arg: list of arguments passed.
+  * Return: characters printed.
+  */
+
 int convert_d(va_list arg)
 {
 	int num;
@@ -54,6 +61,13 @@ int convert_d(va_list arg)
 		write(1, &tmp[index], 1);
 	return (index);
 }
+
+/**
+  * convert_i - handles format specifier 'i'
+  *		and prints string to stdout.
+  * @arg: list of arguments passed.
+  * Return: characters printed.
+  */
 
 int convert_i(va_list arg)
 {
