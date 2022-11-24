@@ -15,6 +15,8 @@ int (*get_converter(char c))(va_list)
 	convert ops[] = {
 		{"c", convert_c},
 		{"s", convert_s},
+		{"d", convert_d},
+		{"i", convert_i},
 	};
 
 	for (index = 0; ops[index].symbol != NULL; index++)
