@@ -50,13 +50,13 @@ int convert_d(va_list arg)
 
 	_itoa(num, tmp, 10);
 
-	for(index = 0; tmp[index]; index++)
+	for (index = 0; tmp[index]; index++)
 		write(1, &tmp[index], 1);
 	return (index);
 }
 
 int convert_i(va_list arg)
 {
-	return(convert_d(arg));
+	return (convert_d(arg));
 }
 
