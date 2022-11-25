@@ -10,46 +10,40 @@
  * Return: string.
  */
 
-char *_itoa(int i, char *output, int base)
+char *_itoa(int i, char *str, int base)
 {
-	int num;
-	int sign;
-	char *str = output;
+	int index = 0;
+	int rem;
+	int sign = 0;
 
-	/*check if int is positive*/
-	sign = 0;
-	if (i < 0)
+	if (i == 0)
+	{
+		str[index++] = '0';
+		str[index] = '\0';
+		return (str);
+	}
+
+	if (i < 0 && base == 10)
 	{
 		sign = 1;
-		i *= -1;
+		i = -i;
 	}
 
-	/*Convert int to ASCII*/
-
-	while (i)
+	while (i != 0)
 	{
-		num = i % base;
-
-		if (num > 9)
+		rem = i % base;
+		if (rem > 9)
 		{
-			*str = ('A' + num - 10);
+			str[index++] = (rem - 10) + 'a';
 		}
-
 		else
-			*str = '0' + num;
+			str[index++] = rem + '0';
 		i = i / base;
-		str++;
 	}
-	/*Add negative sign back*/
 
 	if (sign)
-	{
-		*str++ = '-';
-	}
+		str[index++] = '-';
+	str[index] = '\0';
 
-	/*Add null byte*/
-
-	*str = '\0';
-
-	return (_strrev(output));
+	return (_strrev(str));
 }
