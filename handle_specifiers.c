@@ -33,7 +33,7 @@ int convert_s(va_list arg)
 	str = va_arg(arg, char *);
 
 	if (str == NULL)
-		str = "(nil)";
+		str = "(null)";
 	for (index = 0; str[index] != '\0'; index++)
 		write(1, &str[index], 1);
 
