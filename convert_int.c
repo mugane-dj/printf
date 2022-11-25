@@ -5,7 +5,7 @@
  * _itoa - converts integer to string.
  *
  * @i: int to be converted.
- * @output: A pointer to output area in memory
+ * @str: A pointer to output area in memory
  * @base: The base of the integer to be converted.
  * Return: string.
  */
