@@ -1,17 +1,14 @@
 #include <stdarg.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 #include "main.h"
-
 /**
- * _printf - printd formatted strings to console.
- *
+ * run_printf - print formatted strings to console.
  * @format: formatted string.
+ * @args: arguments of type va_list.
  * Return: number of chars printed exculding the null byte.
  */
-
-int _printf(const char *format, ...)
+int run_printf(const char *format, va_list args)
 {
 	int len = -1; /*if format is NULL return -1 as len*/
 
@@ -19,9 +16,7 @@ int _printf(const char *format, ...)
 	{
 		int index = 0;
 		int (*op)(va_list);
-		va_list param;
 
-		va_start(param, format);
 		len = 0;
 
 		while (format[index] != '\0')
@@ -33,11 +28,11 @@ int _printf(const char *format, ...)
 					len += write(1, &format[index], 1);
 					index++;
 				}
-				else if (format[index + 1] != '\0')
+				else
 				{
 					op = get_converter(format[index + 1]);
 					if (op)
-						len += op(param);
+						len += op(args);
 					else
 					{
 						write(1, &format[index], 1);
@@ -51,7 +46,27 @@ int _printf(const char *format, ...)
 				len += write(1, &format[index], 1);
 			index++;
 		}
-		va_end(param);
 	}
 	return (len);
+}
+
+/**
+ * _printf - printd formatted strings to console.
+ *
+ * @format: formatted string.
+ * Return: number of chars printed exculding the null byte.
+ */
+
+int _printf(const char *format, ...)
+{
+	int num;
+	va_list args;
+
+	va_start(args, format);
+
+	num = run_printf(format, args);
+
+	va_end(args);
+
+	return (num);
 }
